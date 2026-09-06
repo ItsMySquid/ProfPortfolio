@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hosting — Dirk van Gelderen</title>
+  <meta name="description" content="Website development én hosting in één pakket. Samenwerking met een gespecialiseerd hostingbedrijf voor de complete online oplossing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .hosting-hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      padding-top: 6rem;
+      background: linear-gradient(160deg, #1a1612 0%, #24201c 50%, #2e2720 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hosting-hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: rgba(181,136,99,0.07);
+      filter: blur(100px);
+      pointer-events: none;
+    }
+
+    .hosting-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(138,154,123,0.05);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .coming-soon-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      border-radius: 100px;
+      border: 1px solid rgba(181,136,99,0.4);
+      background: rgba(181,136,99,0.08);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent);
+      margin-bottom: 2rem;
+    }
+
+    .coming-soon-chip .pulse {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+
+    .hero-title-xl {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-title-xl em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .collab-section {
+      background: var(--color-bg);
+      padding: 6rem 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .collab-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+
+    .collab-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+    }
+
+    .collab-logo {
+      width: 56px; height: 56px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--color-accent), #8f6b4d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .collab-logo svg {
+      width: 1em;
+      height: 1em;
+    }
+
+    .collab-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .collab-card p {
+      color: var(--color-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .features-section {
+      background: var(--color-bg-2);
+      border-top: 1px solid var(--color-border);
+      padding: 6rem 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      padding: 2rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      transition: border-color var(--transition), transform var(--transition-slow);
+    }
+
+    .feature-card:hover {
+      border-color: rgba(181,136,99,0.35);
+      color: var(--color-accent);
+      display: inline-flex;
+    }
+
+    .feature-icon svg {
+      width: 1em;
+      height: 1em;
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.875rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+
+    .packages-section {
+      background: var(--color-bg);
+      border-top: 1px solid var(--color-border);
+      padding: 6rem 0;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .package-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: border-color var(--transition), transform var(--transition-slow);
+    }
+
+    .package-card:hover { transform: translateY(-4px); }
+
+    .package-card.featured {
+      border-color: var(--color-accent);
+      background: rgba(181,136,99,0.07);
+    }
+
+    .package-badge {
+      position: absolute;
+      top: -14px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-accent);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .package-name {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .package-price {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .package-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .package-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--color-text);
+    }
+
+    .package-features li::before {
+      content: '';
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      flex-shrink: 0;
+      background-color: var(--color-accent-3);
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+      mask-size: contain;
+      mask-repeat: no-repeat;
+      mask-position: center;
+    }
+
+    .package-features li.muted { color: var(--color-muted); }
+    .package-features li.muted::before { background-color: var(--color-muted); }
+
+    .notify-section {
+      background: linear-gradient(135deg, #24201c, #2e2720);
+      border-top: 1px solid var(--color-border);
+      padding: 6rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .notify-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: rgba(181,136,99,0.06);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .notify-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 420px;
+      margin: 2rem auto 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .notify-input {
+      flex: 1;
+      padding: 0.8rem 1.25rem;
+      border-radius: 100px;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+
+    .notify-input:focus { border-color: var(--color-accent); }
+    .notify-input::placeholder { color: var(--color-muted); }
+
+    @media (max-width: 900px) {
+      .collab-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .packages-grid { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
+    }
+
+    @media (max-width: 640px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .notify-form { flex-direction: column; border-radius: var(--radius); }
+      .notify-input { border-radius: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">dvg.</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Over mij</a></li>
+        <li><a href="projects.html">Projecten</a></li>
+        <li><a href="services.html">Diensten</a></li>
+        <li><a href="hosting.html">Hosting</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hosting-hero">
+      <div class="container" style="position:relative; z-index:2;">
+        <div class="coming-soon-chip">
+          <span class="pulse"></span>
+          Binnenkort beschikbaar
+        </div>
+        <h1 class="hero-title-xl">
+          Website + Hosting.<br>
+          <em>Alles in één.</em>
+        </h1>
+        <p class="section-sub" style="max-width:560px;">
+          In samenwerking met een gespecialiseerd hostingbedrijf bied ik straks een compleet pakket: design, development én snelle, betrouwbare hosting — allemaal via één aanspreekpunt.
+        </p>
+      </div>
+    </section>
+
+    <!-- Collaboration -->
+    <section class="collab-section">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">De samenwerking</p>
+          <h2 class="section-title">Twee experts, één pakket</h2>
+          <p class="section-sub">Jij hoeft je nergens zorgen over te maken. Wij regelen het.</p>
+        </div>
+        <div class="collab-grid">
+          <div class="collab-card reveal-left">
+            <div class="collab-logo"><i data-lucide="user"></i></div>
+            <h3>Dirk van Gelderen</h3>
+            <p>
+              Creative developer verantwoordelijk voor het volledige design en de front-end development. Ik zorg dat je website er goed uitziet, snel laadt en perfect werkt op elk apparaat.
+            </p>
+            <div style="margin-top:1.25rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <span style="font-size:0.75rem; padding:0.25rem 0.6rem; border-radius:100px; background:rgba(181,136,99,0.12); color:var(--color-accent); border:1px solid rgba(181,136,99,0.2); font-weight:600;">Design</span>
+              <span style="font-size:0.75rem; padding:0.25rem 0.6rem; border-radius:100px; background:rgba(181,136,99,0.12); color:var(--color-accent); border:1px solid rgba(181,136,99,0.2); font-weight:600;">Development</span>
+              <span style="font-size:0.75rem; padding:0.25rem 0.6rem; border-radius:100px; background:rgba(181,136,99,0.12); color:var(--color-accent); border:1px solid rgba(181,136,99,0.2); font-weight:600;">SEO</span>
+            </div>
+          </div>
+          <div class="collab-card reveal-right">
+            <div class="collab-logo" style="background:linear-gradient(135deg,var(--color-accent-3),#6b7a5f);"><i data-lucide="globe"></i></div>
+            <h3>Hostingpartner</h3>
+            <p>
+              Een gespecialiseerd hostingbedrijf dat zorgt voor snelle servers, 99.9% uptime, dagelijkse backups en technische infrastructuur. Jouw website staat altijd online.
+            </p>
+            <div style="margin-top:1.25rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <span style="font-size:0.75rem; padding:0.25rem 0.6rem; border-radius:100px; background:rgba(138,154,123,0.1); color:var(--color-accent); border:1px solid rgba(138,154,123,0.2); font-weight:600;">Hosting</span>
+              <span style="font-size:0.75rem; padding:0.25rem 0.6rem; border-radius:100px; background:rgba(138,154,123,0.1); color:var(--color-accent); border:1px solid rgba(138,154,123,0.2); font-weight:600;">Beveiliging</span>
+              <span style="font-size:0.75rem; padding:0.25rem 0.6rem; border-radius:100px; background:rgba(138,154,123,0.1); color:var(--color-accent); border:1px solid rgba(138,154,123,0.2); font-weight:600;">Backups</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">Wat je krijgt</p>
+          <h2 class="section-title">Alles inbegrepen</h2>
+          <p class="section-sub">Geen verborgen kosten, geen technische verrassingen.</p>
+        </div>
+        <div class="features-grid stagger">
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="palette"></i></div>
+            <h3>Op maat ontwerp</h3>
+            <p>Geen templates. Elke website is uniek ontworpen op basis van jouw merk en doelgroep.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="zap"></i></div>
+            <h3>Razendsnel</h3>
+            <p>Geoptimaliseerde code én snelle serverinfrastructuur voor maximale laadsnelheid.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="shield-check"></i></div>
+            <h3>SSL & beveiliging</h3>
+            <p>Gratis SSL-certificaat, DDoS-bescherming en regelmatige beveiligingsupdates.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="hard-drive"></i></div>
+            <h3>Dagelijkse backups</h3>
+            <p>Automatische dagelijkse backups zodat je gegevens altijd veilig zijn.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="smartphone"></i></div>
+            <h3>Volledig responsief</h3>
+            <p>Perfect weergegeven op telefoon, tablet en desktop — altijd en overal.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i data-lucide="headset"></i></div>
+            <h3>Persoonlijk support</h3>
+            <p>Eén aanspreekpunt voor al je vragen. Geen callcenter, gewoon direct contact.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Packages -->
+    <section class="packages-section">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">Pakketten</p>
+          <h2 class="section-title">Kies wat bij je past</h2>
+          <p class="section-sub">Eerlijke en transparante prijzen. Meer details volgen bij de lancering.</p>
+        </div>
+        <div class="packages-grid stagger">
+          <div class="package-card">
+            <div class="package-name">Starter</div>
+            <div class="package-price">Prijs volgt bij lancering</div>
+            <ul class="package-features">
+              <li>1-pagina website</li>
+              <li>Responsive design</li>
+              <li>SSL-certificaat</li>
+              <li>1 jaar hosting inbegrepen</li>
+              <li>Contactformulier</li>
+              <li class="muted">Maandelijks onderhoud</li>
+              <li class="muted">Meerdere pagina's</li>
+            </ul>
+            <a href="index.html#contact" class="btn btn-ghost" style="width:100%; justify-content:center;">Interesse melden</a>
+          </div>
+          <div class="package-card featured">
+            <div class="package-badge">Meest gekozen</div>
+            <div class="package-name">Business</div>
+            <div class="package-price">Prijs volgt bij lancering</div>
+            <ul class="package-features">
+              <li>Tot 5 pagina's</li>
+              <li>Responsive design</li>
+              <li>SSL-certificaat</li>
+              <li>1 jaar hosting inbegrepen</li>
+              <li>Contactformulier</li>
+              <li>Maandelijks onderhoud</li>
+              <li class="muted">Webshop functionaliteit</li>
+            </ul>
+            <a href="index.html#contact" class="btn btn-primary" style="width:100%; justify-content:center;">Interesse melden</a>
+          </div>
+          <div class="package-card">
+            <div class="package-name">Pro</div>
+            <div class="package-price">Prijs volgt bij lancering</div>
+            <ul class="package-features">
+              <li>Onbeperkt pagina's</li>
+              <li>Responsive design</li>
+              <li>SSL-certificaat</li>
+              <li>1 jaar hosting inbegrepen</li>
+              <li>Contactformulier</li>
+              <li>Maandelijks onderhoud</li>
+              <li>Webshop functionaliteit</li>
+            </ul>
+            <a href="index.html#contact" class="btn btn-ghost" style="width:100%; justify-content:center;">Interesse melden</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notify -->
+    <section class="notify-section">
+      <div class="container" style="position:relative; z-index:1;">
+        <div class="reveal">
+          <p class="section-label" style="justify-content:center;">Op de hoogte blijven</p>
+          <h2 class="section-title">Als eerste op de hoogte?</h2>
+          <p class="section-sub" style="margin:0 auto;">
+            Laat je e-mailadres achter en ik laat je weten zodra het pakket beschikbaar is — inclusief een speciale introductiekorting.
+          </p>
+          <div class="notify-form">
+            <input type="email" class="notify-input" placeholder="jouw@email.nl">
+            <button class="btn btn-primary" type="button">Aanmelden</button>
+          </div>
+          <p style="font-size:0.8rem; color:var(--color-muted); margin-top:1rem; position:relative; z-index:1;">
+            Geen spam. Alleen een bericht als het zover is.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2025 Dirk van Gelderen — Creative Developer</p>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="projects.html">Projecten</a>
+          <a href="services.html">Diensten</a>
+          <a href="https://github.com/ItsMySquid" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

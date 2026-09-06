@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diensten — Dirk van Gelderen</title>
+  <meta name="description" content="Front-end webdevelopment voor lokale bedrijven. Moderne websites, snelle laadtijden en persoonlijk contact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-hero {
+      padding: 10rem 0 5rem;
+      background: var(--color-bg-2);
+      border-bottom: 1px solid var(--color-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: -100px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: rgba(181,136,99,0.06);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .services-full {
+      background: var(--color-bg);
+      padding: 5rem 0;
+    }
+
+    .service-full-card {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .service-full-card:last-child { border-bottom: none; }
+
+    .service-full-card.reverse { direction: rtl; }
+    .service-full-card.reverse > * { direction: ltr; }
+
+    .service-icon-lg {
+      font-size: 4rem;
+      width: 100px; height: 100px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 1.5rem;
+      color: var(--color-accent);
+    }
+
+    .service-icon-lg svg {
+      width: 1em;
+      height: 1em;
+    }
+
+    .service-full-card h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .service-full-card p {
+      color: var(--color-muted);
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-list {
+      list-style: none;
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .service-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    .service-list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .service-visual {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mock-browser {
+      background: var(--color-bg);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+
+    .mock-browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1rem;
+      background: var(--color-surface-2);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .mock-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+
+    .mock-dot:nth-child(1) { background: #ff5f56; }
+    .mock-dot:nth-child(2) { background: #ffbd2e; }
+    .mock-dot:nth-child(3) { background: #27c93f; }
+
+    .mock-browser-content {
+      padding: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      line-height: 1.8;
+    }
+
+    .mock-browser-content .hl { color: var(--color-accent); }
+    .mock-browser-content .hl2 { color: var(--color-accent-3); }
+    .mock-browser-content .hl3 { color: var(--color-gold); }
+
+    .process-section {
+      background: var(--color-bg-2);
+      border-top: 1px solid var(--color-border);
+      padding: 5rem 0;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .process-step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      position: relative;
+    }
+
+    .step-number {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 800;
+      color: rgba(181,136,99,0.18);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .process-step h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step p {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+
+    .impressie-section {
+      background: var(--color-bg);
+      padding: 5rem 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .impressie-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .impressie-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      transition: transform var(--transition-slow);
+    }
+
+    .impressie-card:hover { transform: scale(1.02); }
+
+    .impressie-card svg {
+      width: 1em;
+      height: 1em;
+    }
+
+    .impressie-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .service-full-card { grid-template-columns: 1fr; gap: 2rem; }
+      .service-full-card.reverse { direction: ltr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .impressie-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .process-steps { grid-template-columns: 1fr; }
+      .impressie-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">dvg.</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Over mij</a></li>
+        <li><a href="projects.html">Projecten</a></li>
+        <li><a href="services.html">Diensten</a></li>
+        <li><a href="hosting.html">Hosting</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="section-label">Wat ik aanbied</p>
+        <h1 class="section-title" style="font-size:clamp(2.5rem,5vw,4rem);">Diensten</h1>
+        <p class="section-sub" style="margin-top:1rem;">
+          Ik help lokale bedrijven aan een sterke online aanwezigheid. Maatwerk, persoonlijk contact en eerlijke prijzen.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services detail -->
+    <section class="services-full">
+      <div class="container">
+
+        <div class="service-full-card reveal-left">
+          <div>
+            <div class="service-icon-lg"><i data-lucide="palette"></i></div>
+            <h2>Website Design & Development</h2>
+            <p>
+              Van een eenvoudige bedrijfspagina tot een uitgebreid portfolio — ik bouw websites die er goed uitzien én goed werken. Elke site is op maat gemaakt, mobielvriendelijk en snel.
+            </p>
+            <p>
+              Ik werk nauw samen met de klant: van de eerste schets tot de live lancering.
+            </p>
+            <ul class="service-list">
+              <li>Responsive design voor elk schermformaat</li>
+              <li>Moderne animaties en interacties</li>
+              <li>SEO-vriendelijke structuur</li>
+              <li>Snelle laadtijden (&lt; 2 seconden)</li>
+              <li>Persoonlijk contact en korte lijnen</li>
+            </ul>
+          </div>
+          <div class="service-visual">
+            <div class="mock-browser">
+              <div class="mock-browser-bar">
+                <div class="mock-dot"></div>
+                <div class="mock-dot"></div>
+                <div class="mock-dot"></div>
+              </div>
+              <div class="mock-browser-content">
+                <div><span class="hl">const</span> website = <span class="hl2">maatwerk</span></div>
+                <div><i data-lucide="check" style="width:0.85em;height:0.85em;vertical-align:-2px;"></i> <span class="hl3">Mobile First</span></div>
+                <div><i data-lucide="check" style="width:0.85em;height:0.85em;vertical-align:-2px;"></i> <span class="hl3">Modern Design</span></div>
+                <div><i data-lucide="check" style="width:0.85em;height:0.85em;vertical-align:-2px;"></i> <span class="hl3">Fast Loading</span></div>
+                <div><i data-lucide="check" style="width:0.85em;height:0.85em;vertical-align:-2px;"></i> <span class="hl3">SEO Ready</span></div>
+                <div><i data-lucide="check" style="width:0.85em;height:0.85em;vertical-align:-2px;"></i> <span class="hl2">Persoonlijk contact</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-full-card reverse reveal-right">
+          <div>
+            <div class="service-icon-lg"><i data-lucide="zap"></i></div>
+            <h2>Performance & Optimalisatie</h2>
+            <p>
+              Een trage website kost bezoekers én klanten. Ik analyseer je huidige site en optimaliseer alles: van afbeeldingen en code tot serverinstellingen.
+            </p>
+            <p>
+              Resultaat: een betere Google-ranking, meer conversies en tevreden bezoekers.
+            </p>
+            <ul class="service-list">
+              <li>Google PageSpeed score 90+</li>
+              <li>Geoptimaliseerde afbeeldingen en assets</li>
+              <li>Core Web Vitals verbetering</li>
+              <li>Code review en refactoring</li>
+              <li>Lighthouse audit rapport</li>
+            </ul>
+          </div>
+          <div class="service-visual">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+              <div style="text-align:center; padding:1.5rem; background:var(--color-bg); border-radius:0.75rem; border:1px solid var(--color-border);">
+                <div style="font-family:var(--font-heading); font-size:2.5rem; font-weight:800; color:var(--color-accent);">98</div>
+                <div style="font-size:0.75rem; color:var(--color-muted); margin-top:0.25rem;">Performance</div>
+              </div>
+              <div style="text-align:center; padding:1.5rem; background:var(--color-bg); border-radius:0.75rem; border:1px solid var(--color-border);">
+                <div style="font-family:var(--font-heading); font-size:2.5rem; font-weight:800; color:var(--color-accent);">96</div>
+                <div style="font-size:0.75rem; color:var(--color-muted); margin-top:0.25rem;">SEO</div>
+              </div>
+              <div style="text-align:center; padding:1.5rem; background:var(--color-bg); border-radius:0.75rem; border:1px solid var(--color-border);">
+                <div style="font-family:var(--font-heading); font-size:2.5rem; font-weight:800; color:var(--color-accent);">100</div>
+                <div style="font-size:0.75rem; color:var(--color-muted); margin-top:0.25rem;">Best Practices</div>
+              </div>
+              <div style="text-align:center; padding:1.5rem; background:var(--color-bg); border-radius:0.75rem; border:1px solid var(--color-border);">
+                <div style="font-family:var(--font-heading); font-size:2.5rem; font-weight:800; color:var(--color-accent);">94</div>
+                <div style="font-size:0.75rem; color:var(--color-muted); margin-top:0.25rem;">Accessibility</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-full-card reveal-left">
+          <div>
+            <div class="service-icon-lg"><i data-lucide="handshake"></i></div>
+            <h2>Onderhoud & Langdurige samenwerking</h2>
+            <p>
+              Je website is nooit "af". Ik bied onderhoudspakketten voor bedrijven die een betrouwbare developer willen voor de lange termijn — voor updates, nieuwe functies of technisch advies.
+            </p>
+            <ul class="service-list">
+              <li>Maandelijkse updates en fixes</li>
+              <li>Nieuwe pagina's en functionaliteiten</li>
+              <li>Technisch advies en strategie</li>
+              <li>Snelle responstijden</li>
+              <li>Directe communicatie, geen tussenpersonen</li>
+            </ul>
+          </div>
+          <div class="service-visual" style="gap:0.5rem;">
+            <div style="display:flex; align-items:center; gap:0.75rem; padding:0.75rem; background:var(--color-bg); border-radius:0.6rem; border:1px solid var(--color-border); font-size:0.85rem;">
+              <span style="color:var(--color-accent);"><i data-lucide="check" style="width:0.9em;height:0.9em;vertical-align:-2px;"></i></span> Website update
+              <span style="margin-left:auto; font-size:0.75rem; color:var(--color-muted);">Vandaag</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.75rem; padding:0.75rem; background:var(--color-bg); border-radius:0.6rem; border:1px solid var(--color-border); font-size:0.85rem;">
+              <span style="color:var(--color-accent);"><i data-lucide="check" style="width:0.9em;height:0.9em;vertical-align:-2px;"></i></span> Bug fix contactformulier
+              <span style="margin-left:auto; font-size:0.75rem; color:var(--color-muted);">Gisteren</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.75rem; padding:0.75rem; background:var(--color-bg); border-radius:0.6rem; border:1px solid var(--color-border); font-size:0.85rem;">
+              <span style="color:var(--color-accent);"><i data-lucide="check" style="width:0.9em;height:0.9em;vertical-align:-2px;"></i></span> Nieuwe productpagina
+              <span style="margin-left:auto; font-size:0.75rem; color:var(--color-muted);">Ma</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.75rem; padding:0.75rem; background:var(--color-bg); border-radius:0.6rem; border:1px solid var(--color-border); font-size:0.85rem;">
+              <span style="color:var(--color-accent);"><i data-lucide="refresh-cw" style="width:0.9em;height:0.9em;vertical-align:-2px;"></i></span> SEO-check maand rapport
+              <span style="margin-left:auto; font-size:0.75rem; color:var(--color-muted);">Gepland</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process-section">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">Hoe het werkt</p>
+          <h2 class="section-title">Van idee tot live</h2>
+          <p class="section-sub">Een helder en transparant proces zonder verrassingen.</p>
+        </div>
+        <div class="process-steps stagger">
+          <div class="process-step">
+            <div class="step-number">01</div>
+            <h3>Gesprek</h3>
+            <p>We bespreken jouw wensen, doelen en doelgroep. Geen formulieren, gewoon een eerlijk gesprek.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">02</div>
+            <h3>Ontwerp</h3>
+            <p>Ik maak een eerste opzet en presenteer dat. Feedback is altijd welkom — het is jouw website.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">03</div>
+            <h3>Development</h3>
+            <p>De website wordt gebouwd: schone code, snelle performance en aandacht voor detail.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">04</div>
+            <h3>Live & support</h3>
+            <p>De site gaat live. Daarna blijf ik beschikbaar voor vragen, updates en nieuwe wensen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impressies -->
+    <section class="impressie-section">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">Wat ik maak</p>
+          <h2 class="section-title">Impressies van mijn werk</h2>
+          <p class="section-sub">Van lokale horecasites tot moderne landingspagina's.</p>
+        </div>
+        <div class="impressie-grid stagger">
+          <div class="impressie-card" style="background:linear-gradient(135deg,#2a241e,#4a5840);">
+            <i data-lucide="coffee"></i>
+            <div class="impressie-label">Lunchcafé website</div>
+          </div>
+          <div class="impressie-card" style="background:linear-gradient(135deg,#2a221c,#3d2f23);">
+            <i data-lucide="bot"></i>
+            <div class="impressie-label">AI Chat Interface</div>
+          </div>
+          <div class="impressie-card" style="background:linear-gradient(135deg,#1c2216,#2a3220);">
+            <i data-lucide="scan-eye"></i>
+            <div class="impressie-label">Computer Vision Tool</div>
+          </div>
+          <div class="impressie-card" style="background:linear-gradient(135deg,#2a1c16,#3d2a21);">
+            <i data-lucide="building-2"></i>
+            <div class="impressie-label">Bedrijfswebsite</div>
+          </div>
+          <div class="impressie-card" style="background:linear-gradient(135deg,#2a221c,#3d2f23);">
+            <i data-lucide="gamepad-2"></i>
+            <div class="impressie-label">Game project</div>
+          </div>
+          <div class="impressie-card" style="background:linear-gradient(135deg,#1c2228,#29333d);">
+            <i data-lucide="layout-dashboard"></i>
+            <div class="impressie-label">Dashboard / Full-stack app</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" style="padding:6rem 0;">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label" style="justify-content:center;">Interesse?</p>
+          <h2 class="section-title">Klaar om te starten?</h2>
+          <p class="section-sub">
+            Vertel me over jouw project. Ik reageer binnen één werkdag.
+          </p>
+          <a href="mailto:dirkvgelderen@gmail.com" class="btn btn-primary" style="margin:0 auto;">
+            <i data-lucide="mail"></i> Stuur een bericht
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2025 Dirk van Gelderen — Creative Developer</p>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="projects.html">Projecten</a>
+          <a href="hosting.html">Hosting</a>
+          <a href="https://github.com/ItsMySquid" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

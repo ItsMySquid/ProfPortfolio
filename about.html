@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Over mij — Dirk van Gelderen</title>
+  <meta name="description" content="Meer over Dirk van Gelderen, zijn studie CMGT, hobbies zoals fotografie en hiking, en zijn minor game development.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <style>
+    .page-hero {
+      padding: 10rem 0 5rem;
+      background: var(--color-bg-2);
+      border-bottom: 1px solid var(--color-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(181,136,99,0.06);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .page-hero .section-title { font-size: clamp(2.5rem, 5vw, 4rem); }
+
+    .about-intro {
+      background: var(--color-bg);
+      padding: 5rem 0;
+    }
+
+    .about-intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-intro-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      aspect-ratio: 1/1;
+      background: var(--color-surface);
+    }
+
+    .about-intro-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .about-intro-text p {
+      color: var(--color-muted);
+      line-height: 1.8;
+      margin-top: 1rem;
+    }
+
+    .about-intro-text p + p { margin-top: 0.75rem; }
+
+    .hobby-section {
+      padding: 5rem 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .hobby-section:nth-child(even) { background: var(--color-bg-2); }
+    .hobby-section:nth-child(odd) { background: var(--color-bg); }
+
+    .hobby-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hobby-grid.reverse { direction: rtl; }
+    .hobby-grid.reverse > * { direction: ltr; }
+
+    .hobby-visual {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .hobby-visual.two-up {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hobby-visual img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .hobby-visual.two-up img { height: 220px; }
+
+    .hobby-text h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .hobby-icon {
+      display: inline-flex;
+      color: var(--color-accent);
+    }
+
+    .hobby-icon svg {
+      width: 1.1em;
+      height: 1.1em;
+    }
+
+    .hobby-text p {
+      color: var(--color-muted);
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .hobby-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+
+    .hobby-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      background: rgba(181,136,99,0.12);
+      color: var(--color-accent);
+      border: 1px solid rgba(181,136,99,0.2);
+    }
+
+    .minor-banner {
+      background: linear-gradient(135deg, #24201c, #2e2720);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      padding: 4rem 0;
+    }
+
+    .minor-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .minor-visual {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      line-height: 2;
+    }
+
+    .minor-visual .hl { color: var(--color-accent); }
+    .minor-visual .hl2 { color: var(--color-accent-2); }
+
+    .gallery-section {
+      background: var(--color-bg-2);
+      padding: 5rem 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 1;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    .gallery-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .about-intro-grid,
+      .hobby-grid,
+      .minor-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hobby-grid.reverse { direction: ltr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .hobby-visual.two-up { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+
+      .travel-map { height: 380px; }
+    }
+
+    .travel-map {
+      height: 520px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      z-index: 1;
+    }
+
+    .travel-marker {
+      background: transparent !important;
+      border: none !important;
+    }
+
+    .travel-marker svg {
+      width: 28px;
+      height: 28px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+      display: block;
+    }
+
+    .leaflet-popup-content-wrapper,
+    .leaflet-popup-tip {
+      background: var(--color-surface) !important;
+      color: var(--color-text) !important;
+      border-radius: var(--radius) !important;
+      box-shadow: var(--shadow) !important;
+      border: 1px solid var(--color-border);
+    }
+
+    .leaflet-popup-content {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 220px !important;
+      line-height: 1.4;
+    }
+
+    .travel-popup img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .travel-popup .popup-text {
+      padding: 0.75rem;
+    }
+
+    .travel-popup h4 {
+      font-family: var(--font-heading);
+      margin: 0;
+      font-size: 1rem;
+      color: var(--color-white);
+    }
+
+    .travel-popup p {
+      margin: 0.25rem 0 0;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">dvg.</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Over mij</a></li>
+        <li><a href="projects.html">Projecten</a></li>
+        <li><a href="services.html">Diensten</a></li>
+        <li><a href="hosting.html">Hosting</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="section-label">Meer over mij</p>
+        <h1 class="section-title">Dirk van Gelderen</h1>
+        <p class="section-sub" style="margin-top:1rem;">
+          Developer, fotograaf, traveller en gamer — met een fascinatie voor verhalen die je kunt bouwen én beleven.
+        </p>
+      </div>
+    </section>
+
+    <section class="about-intro">
+      <div class="container">
+        <div class="about-intro-grid reveal">
+          <div class="about-intro-img">
+            <img src="Portfolio%20images/Portret.jpg" alt="Dirk van Gelderen" style="object-position:top;">
+          </div>
+          <div class="about-intro-text">
+            <h2 class="section-title">Van idee naar iets dat werkt</h2>
+            <p>
+              Ik ben 22 jaar oud en woon in Boskoop. Mijn interesse in technologie begon al vroeg: eerst met gamen, toen met het bouwen van kleine websites, en uiteindelijk met de keuze om CMGT te studeren in Rotterdam.
+            </p>
+            <p>
+              Inmiddels ben ik in mijn vierde jaar en heb ik gewerkt aan projecten op het snijvlak van AI, computer vision, front-end frameworks en full-stack development. Wat mij drijft is het maken van dingen die niet alleen goed werken, maar ook een beetje magie hebben.
+            </p>
+            <p>
+              Naast het werk ben ik graag onderweg. Ik fotografeer steden en landschappen, maak lange hikes en laat me inspireren door nieuwe plekken. Die nieuwsgierigheid neem ik mee terug naar mijn projecten.
+            </p>
+            <a href="index.html#contact" class="btn btn-primary" style="margin-top:1.5rem;">Samenwerken?</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hobby-section">
+      <div class="container">
+        <div class="reveal" style="text-align:center; margin-bottom:2.5rem;">
+          <p class="section-label">Reizen & fotografie</p>
+          <h2 class="section-title" style="justify-content:center;"><span class="hobby-icon"><i data-lucide="camera"></i></span> Plekken waar ik ben geweest</h2>
+          <p class="section-sub" style="max-width:640px; margin:0 auto;">
+            Hover over een marker om een sfeerimpressie van die plek te zien.
+          </p>
+        </div>
+        <div id="travel-map" class="travel-map reveal"></div>
+        <div class="hobby-tags" style="justify-content:center; margin-top:1.5rem; flex-wrap:wrap;">
+          <span class="hobby-tag">Athene</span>
+          <span class="hobby-tag">Oslo</span>
+          <span class="hobby-tag">Parijs</span>
+          <span class="hobby-tag">Praag</span>
+          <span class="hobby-tag">Cochem</span>
+          <span class="hobby-tag">Zwitserland</span>
+          <span class="hobby-tag">Samariakloof</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="hobby-section">
+      <div class="container">
+        <div class="hobby-grid reverse">
+          <div class="hobby-text reveal-left">
+            <h2><span class="hobby-icon"><i data-lucide="mountain"></i></span> Hiking & natuur</h2>
+            <p>
+              Een van de mooiste ervaringen die ik heb gehad is de tocht door de Samariakloof op Kreta. Zestien kilometer tussen steile wanden, oude bruggetjes en uiteindelijk uitkomend bij de zee.
+            </p>
+            <p>
+              Hiking is voor mij de tegenhanger van schermtijd. Het helpt me om hoofd leeg te maken en met frisse ideeën terug te komen. Of ik nu in Griekenland, Nederland of ergens anders wandel — het geeft energie.
+            </p>
+            <div class="hobby-tags">
+              <span class="hobby-tag">Samariakloof</span>
+              <span class="hobby-tag">Kreta</span>
+              <span class="hobby-tag">Nederland</span>
+            </div>
+          </div>
+          <div class="hobby-visual reveal-right">
+            <img src="Portfolio%20images/Samariakloof.JPG" alt="Hiking in de Samariakloof">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="minor-banner">
+      <div class="container">
+        <div class="minor-inner reveal">
+          <div>
+            <p class="section-label">Verdieping</p>
+            <h2 class="section-title">Minor Game Development</h2>
+            <p class="section-sub" style="margin-top:1rem;">
+              Na mijn bachelor volg ik een minor in game development. Ik wil me verder verdiepen in interactieve ervaringen, game mechanics en het vertellen van verhalen door middel van spel.
+            </p>
+            <p style="color:var(--color-muted); line-height:1.8; margin-top:1rem;">
+              De combinatie van code, design en beleving fascineert me. Game development vraagt creativiteit, structuur en technisch inzicht — precies het terrein waar ik me thuis voel.
+            </p>
+          </div>
+          <div class="minor-visual">
+            <div><span class="hl">function</span> <span class="hl2">nextChapter</span>() {</div>
+            <div>&nbsp;&nbsp;minor = <span class="hl2">'Game Development'</span>;</div>
+            <div>&nbsp;&nbsp;focus = [<span class="hl2">'Gameplay'</span>, <span class="hl2">'Design'</span>, <span class="hl2">'Story'</span>];</div>
+            <div>&nbsp;&nbsp;return <span class="hl2">'Let\'s build worlds'</span>;</div>
+            <div>}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hobby-section">
+      <div class="container">
+        <div class="hobby-grid">
+          <div class="hobby-visual reveal-left">
+            <img src="Portfolio%20images/Gamedevelopment.jpg" alt="Game development project">
+          </div>
+          <div class="hobby-text reveal-right">
+            <h2><span class="hobby-icon"><i data-lucide="gamepad-2"></i></span> Game Development</h2>
+            <p>
+              Games waren mijn eerste ingang naar technologie. Tegenwoordig experimenteer ik zelf met game mechanics, prototypes en interactieve ervaringen — van kleine browser-games tot grotere schoolprojecten.
+            </p>
+            <p>
+              Het mooie van games is dat je spelers actief laat deelnemen aan een verhaal. Dat principe van interactie en feedback pas ik ook toe in de websites en applicaties die ik bouw.
+            </p>
+            <div class="hobby-tags">
+              <span class="hobby-tag">Prototyping</span>
+              <span class="hobby-tag">TypeScript</span>
+              <span class="hobby-tag">Interactiviteit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">Impressies</p>
+          <h2 class="section-title">Foto's van onderweg</h2>
+          <p class="section-sub">Een kleine selectie van reizen, hikes en momenten die me inspireerden.</p>
+        </div>
+        <div class="gallery-grid stagger">
+          <div class="gallery-item">
+            <img src="Portfolio%20images/Athene.JPEG" alt="Athene">
+            <div class="gallery-label">Athene</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Portfolio%20images/Germany.JPEG" alt="Duitsland">
+            <div class="gallery-label">Duitsland</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Portfolio%20images/Zwitserland.JPEG" alt="Zwitserland">
+            <div class="gallery-label">Zwitserland</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Portfolio%20images/Oslo.JPEG" alt="Oslo">
+            <div class="gallery-label">Oslo</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Portfolio%20images/Samariakloof.JPG" alt="Samariakloof">
+            <div class="gallery-label">Samariakloof</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Portfolio%20images/Hiking.JPEG" alt="Hiking">
+            <div class="gallery-label">Hiking</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Portfolio%20images/Gamedevelopment.jpg" alt="Game project">
+            <div class="gallery-label">Game project</div>
+          </div>
+          <div class="gallery-item">
+            <img src="Portfolio%20images/Oslo_2.JPEG" alt="Oslo">
+            <div class="gallery-label">Oslo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" style="padding:6rem 0;">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label" style="justify-content:center;">Contact</p>
+          <h2 class="section-title">Laten we iets maken</h2>
+          <p class="section-sub">
+            Of je nu een website, een game-idee of een ander digitaal project hebt — ik hoor het graag.
+          </p>
+          <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+            <a href="mailto:dirkvgelderen@gmail.com" class="btn btn-primary"><i data-lucide="mail"></i> Stuur een mail</a>
+            <a href="projects.html" class="btn btn-ghost">Bekijk projecten →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2025 Dirk van Gelderen — Creative Developer</p>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="projects.html">Projecten</a>
+          <a href="services.html">Diensten</a>
+          <a href="hosting.html">Hosting</a>
+          <a href="https://github.com/ItsMySquid" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+    const travelMap = L.map('travel-map', {
+      center: [48.5, 15],
+      zoom: 4,
+      scrollWheelZoom: false,
+      attributionControl: false
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(travelMap);
+
+    const pinSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#b58863" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`;
+
+    const locations = [
+      { name: 'Athene', coords: [37.9838, 23.7275], img: 'Portfolio%20images/Athene.JPEG', desc: 'Acropolis & straatbeeld' },
+      { name: 'Oslo', coords: [59.9139, 10.7522], img: 'Portfolio%20images/Oslo.JPEG', desc: 'Fjorden & Scandinavisch design' },
+      { name: 'Parijs', coords: [48.8566, 2.3522], img: '', desc: 'Stad van licht & monumenten' },
+      { name: 'Praag', coords: [50.0755, 14.4378], img: 'Portfolio%20images/Prague.jpg', desc: 'Oude stad & Karelsbrug' },
+      { name: 'Cochem', coords: [50.1426, 7.1665], img: 'Portfolio%20images/Germany_2.jpg', desc: 'Rijksburg aan de Moezel' },
+      { name: 'Zwitserland', coords: [46.6863, 7.8632], img: 'Portfolio%20images/Zwitserland.JPEG', desc: 'Alpen & meren' },
+      { name: 'Samariakloof', coords: [35.2900, 23.9200], img: 'Portfolio%20images/Samariakloof.JPG', desc: 'Hike door de kloof op Kreta' }
+    ];
+
+    locations.forEach(loc => {
+      const marker = L.marker(loc.coords, {
+        icon: L.divIcon({
+          className: 'travel-marker',
+          html: pinSvg,
+          iconSize: [28, 28],
+          iconAnchor: [14, 28],
+          popupAnchor: [0, -28]
+        })
+      }).addTo(travelMap);
+
+      const imgHtml = loc.img
+        ? `<img src="${loc.img}" alt="${loc.name}">`
+        : `<div style="height:140px;background:var(--color-surface-2);display:flex;align-items:center;justify-content:center;color:var(--color-muted);font-size:0.8rem;">Foto volgt</div>`;
+
+      marker.bindPopup(`
+        <div class="travel-popup">
+          ${imgHtml}
+          <div class="popup-text">
+            <h4>${loc.name}</h4>
+            <p>${loc.desc}</p>
+          </div>
+        </div>
+      `);
+
+      marker.on('mouseover', () => marker.openPopup());
+      marker.on('mouseout', () => marker.closePopup());
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projecten — Dirk van Gelderen</title>
+  <meta name="description" content="Een overzicht van mijn projecten — van AI-chatbots tot full-stack webapps en game development.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-hero {
+      padding: 10rem 0 5rem;
+      background: var(--color-bg-2);
+      border-bottom: 1px solid var(--color-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(181,136,99,0.07);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .page-hero .section-title { font-size: clamp(2.5rem, 5vw, 4rem); }
+
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 3rem 0 2rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.1rem;
+      border-radius: 100px;
+      border: 1px solid var(--color-border);
+      background: transparent;
+      color: var(--color-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-body);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: white;
+    }
+
+    .all-projects { padding: 0 0 6rem; background: var(--color-bg); }
+
+    .project-card.hidden { display: none; }
+
+    .project-featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .project-featured .project-thumb {
+      height: auto;
+      min-height: 300px;
+    }
+
+    @media (max-width: 900px) {
+      .project-featured {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">dvg.</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Over mij</a></li>
+        <li><a href="projects.html">Projecten</a></li>
+        <li><a href="services.html">Diensten</a></li>
+        <li><a href="hosting.html">Hosting</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="section-label">Mijn werk</p>
+        <h1 class="section-title">Projecten</h1>
+        <p class="section-sub" style="margin-top:1rem;">
+          Van schoolprojecten tot persoonlijke experimenten. Een eerlijk overzicht van wat ik heb gebouwd.
+        </p>
+      </div>
+    </section>
+
+    <section class="all-projects">
+      <div class="container">
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">Alles</button>
+          <button class="filter-btn" data-filter="frontend">Front-end</button>
+          <button class="filter-btn" data-filter="ai">AI / ML</button>
+          <button class="filter-btn" data-filter="fullstack">Full-stack</button>
+          <button class="filter-btn" data-filter="game">Game</button>
+        </div>
+
+        <div class="projects-grid stagger">
+
+          <!-- LLM Frontend -->
+          <div class="project-card" data-tags="frontend ai">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#2a221c,#3d2f23);"><i data-lucide="bot"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Vue.js</span>
+                <span class="project-tag">AI / LLM</span>
+                <span class="project-tag">Streaming API</span>
+              </div>
+              <h3>LLM Frontend</h3>
+              <p>Moderne chat-interface voor large language models. Real-time streaming responses, markdown rendering en conversation history. Gebouwd als schoolproject met focus op clean component-architectuur in Vue.js.</p>
+              <div class="project-links">
+                <a href="https://github.com/ItsMySquid/LLM-Frontend" target="_blank" rel="noopener" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Posture Checker -->
+          <div class="project-card" data-tags="ai">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#1c2216,#2a3220);"><i data-lucide="scan-eye"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Computer Vision</span>
+                <span class="project-tag">MediaPipe</span>
+              </div>
+              <h3>Posture Checker</h3>
+              <p>Real-time houdingsdetectie via de webcam. Analyseert skelet-keypoints en waarschuwt de gebruiker als ze te lang slecht zitten. Handig voor thuis werken.</p>
+              <div class="project-links">
+                <a href="https://github.com/ItsMySquid/posture-checker" target="_blank" rel="noopener" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Poster Checker Trainer -->
+          <div class="project-card" data-tags="ai">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#2a1c16,#3d2a21);"><i data-lucide="image"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">ML Training</span>
+                <span class="project-tag">Image Recognition</span>
+              </div>
+              <h3>Poster Checker Trainer</h3>
+              <p>Een machine learning pipeline voor het trainen van een posterherkenningsmodel. Data preprocessing, model training en evaluatie.</p>
+              <div class="project-links">
+                <a href="https://github.com/ItsMySquid/poster-checker-trainer" target="_blank" rel="noopener" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Full-Stack Frontend -->
+          <div class="project-card" data-tags="fullstack frontend">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#1c2228,#29333d);"><i data-lucide="building-2"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Vue.js</span>
+                <span class="project-tag">REST API</span>
+                <span class="project-tag">Full-stack</span>
+              </div>
+              <h3>Full-Stack Development Frontend</h3>
+              <p>Front-end onderdeel van een full-stack schoolproject. Vue.js SPA die communiceert met een REST API backend, inclusief authenticatie en CRUD-operaties.</p>
+              <div class="project-links">
+                <a href="https://github.com/ItsMySquid/Full-Stack-Development-Frontend" target="_blank" rel="noopener" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.885 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Laravel Project -->
+          <div class="project-card" data-tags="fullstack">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#2a1c16,#3d2a21);"><i data-lucide="database"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Laravel</span>
+                <span class="project-tag">PHP</span>
+                <span class="project-tag">MySQL</span>
+              </div>
+              <h3>Laravel Project</h3>
+              <p>Full-stack webapplicatie gebouwd met het Laravel framework. MVC-architectuur, Eloquent ORM, Blade templates en database migraties.</p>
+              <div class="project-links">
+                <a href="https://github.com/ItsMySquid/laravelproject" target="_blank" rel="noopener" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRG04 Eindopdracht -->
+          <div class="project-card" data-tags="game frontend">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#2a221c,#3d2f23);"><i data-lucide="gamepad-2"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">TypeScript</span>
+                <span class="project-tag">OOP</span>
+                <span class="project-tag">Canvas</span>
+              </div>
+              <h3>PRG04 Eindopdracht</h3>
+              <p>Object-georiënteerde game gebouwd in TypeScript. Strak klassemodel met overerving, encapsulatie en een clean game loop.</p>
+              <div class="project-links">
+                <a href="https://github.com/ItsMySquid/PRG04-Eindopdracht" target="_blank" rel="noopener" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vue Test -->
+          <div class="project-card" data-tags="frontend">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#1c2216,#2a3220);"><i data-lucide="layers"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Vue.js</span>
+                <span class="project-tag">Components</span>
+              </div>
+              <h3>Vue Test Project</h3>
+              <p>Experimenteel Vue.js project voor het verkennen van component-gebaseerde architectuur, reactieve data en Vue Router.</p>
+              <div class="project-links">
+                <a href="https://github.com/ItsMySquid/Vue-Test" target="_blank" rel="noopener" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- LLM Chatbot -->
+          <div class="project-card" data-tags="ai fullstack">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#1c2228,#29333d);"><i data-lucide="message-square"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">LLM</span>
+                <span class="project-tag">Backend</span>
+              </div>
+              <h3>LLM Chatbot Backend</h3>
+              <p>Backend service voor een AI-chatbot. API-endpoints, prompt engineering en integratie met large language model providers.</p>
+              <div class="project-links">
+                <a href="https://github.com/ItsMySquid/LLM-Chatbot" target="_blank" rel="noopener" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- MEETZ Impressie -->
+          <div class="project-card" data-tags="frontend">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background:linear-gradient(135deg,#2a241e,#4a5840);"><i data-lucide="coffee"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">HTML</span>
+                <span class="project-tag">CSS</span>
+                <span class="project-tag">JavaScript</span>
+              </div>
+              <h3>MEETZ Boskoop — Impressiesite</h3>
+              <p>Moderne impressiewebsite voor een lokaal lunchcafé in Boskoop. Scroll-animaties, sticky menu-visual, en een interactief menuoverzicht.</p>
+              <div class="project-links">
+                <span class="project-link" style="color:var(--color-accent-3);"><i data-lucide="check" style="width:0.85em;height:0.85em;vertical-align:-2px;"></i> Live project</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2025 Dirk van Gelderen — Creative Developer</p>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="services.html">Diensten</a>
+          <a href="hosting.html">Hosting</a>
+          <a href="https://github.com/ItsMySquid" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.project-card[data-tags]');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          const tags = card.dataset.tags || '';
+          if (filter === 'all' || tags.includes(filter)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

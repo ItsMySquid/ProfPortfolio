@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dirk van Gelderen — Creative Developer</title>
+  <meta name="description" content="Dirk van Gelderen — CMGT student & creative front-end developer. Ik bouw moderne, snelle websites voor bedrijven.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">dvg.</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Over mij</a></li>
+        <li><a href="projects.html">Projecten</a></li>
+        <li><a href="services.html">Diensten</a></li>
+        <li><a href="hosting.html">Hosting</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <canvas id="heroCanvas" class="hero-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
+
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-text-col">
+            <p class="hero-label"><span></span>Creative Developer</p>
+            <h1 class="hero-title">
+              Hoi, ik ben<br>
+              <em>Dirk van Gelderen</em>
+            </h1>
+            <p class="hero-sub">
+              CMGT-student in mijn 4e jaar aan de Hogeschool Rotterdam. Ik bouw snelle, mooie en doordachte front-end ervaringen — van lokale bedrijfssites tot AI-interfaces.
+            </p>
+            <div class="hero-actions">
+              <a href="projects.html" class="btn btn-primary">
+                Bekijk mijn werk
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#contact" class="btn btn-ghost">Neem contact op</a>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="photo-blob-wrap">
+              <div class="photo-blob-bg"></div>
+              <div class="photo-blob">
+                <img src="Portfolio%20images/Portret.jpg" alt="Dirk van Gelderen" style="object-position:top;">
+              </div>
+              <div class="blob-badge blob-badge-1">
+                <span class="dot"></span>
+                Open voor opdrachten
+              </div>
+              <div class="blob-badge blob-badge-2">
+                <i data-lucide="graduation-cap"></i> CMGT jaar 4
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section class="about-strip" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p class="section-label">Over mij</p>
+            <h2 class="section-title">Design × Code × Idee</h2>
+            <p>
+              Ik ben Dirk, een creative developer uit de omgeving van Boskoop. Momenteel zit ik in mijn vierde jaar van de opleiding Creative Media & Game Technologies aan de Hogeschool Rotterdam, waar ik me specialiseer in front-end development en interactief design.
+            </p>
+            <p>
+              Ik ben altijd al gefascineerd geweest door het raakvlak tussen creativiteit en techniek. Waar een goed idee pas echt tot leven komt, is voor mij het moment waarop het visueel en technisch samenvalt tot iets dat intuïtief voelt. Die combinatie zie je terug in mijn school- en hobbyprojecten: van AI-chatbots en computer vision tot complete full-stack webapplicaties en games.
+            </p>
+            <p>
+              Naast code hou ik van fotografie, reizen en de buitenlucht. Of ik nu door de straten van Athene, Oslo, Zwitserland of Duitsland wandel, de Samariakloof in Griekenland doorreis, of thuis aan een game project werk — ik ben voortdurend bezig met beeld, verhaal en techniek.
+            </p>
+            <div class="about-actions" style="margin-top:1.75rem;">
+              <a href="about.html" class="btn btn-primary">Meer over mij</a>
+              <a href="projects.html" class="btn btn-ghost">Bekijk projecten →</a>
+            </div>
+          </div>
+
+          <div class="about-visual reveal-right">
+            <div class="photo-grid">
+              <img src="Portfolio%20images/Athene.JPEG" alt="Foto uit Athene" class="photo-small">
+              <img src="Portfolio%20images/Samariakloof.JPG" alt="Hiking in de Samariakloof" class="photo-small">
+            </div>
+            <div class="skills-grid stagger" style="margin-top:1.5rem;">
+              <div class="skill-chip"><span class="icon"><i data-lucide="palette"></i></span> HTML & CSS</div>
+              <div class="skill-chip"><span class="icon"><i data-lucide="zap"></i></span> JavaScript</div>
+              <div class="skill-chip"><span class="icon"><i data-lucide="layers"></i></span> Vue.js</div>
+              <div class="skill-chip"><span class="icon"><i data-lucide="database"></i></span> PHP & Laravel</div>
+              <div class="skill-chip"><span class="icon"><i data-lucide="server"></i></span> MySQL</div>
+              <div class="skill-chip"><span class="icon"><i data-lucide="bot"></i></span> AI & LLM integratie</div>
+              <div class="skill-chip"><span class="icon"><i data-lucide="scan-eye"></i></span> Computer Vision</div>
+              <div class="skill-chip"><span class="icon"><i data-lucide="wrench"></i></span> Git & GitHub</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROJECTS PREVIEW ── -->
+    <section class="projects-section" id="projecten">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">Werk</p>
+          <h2 class="section-title">Uitgelichte projecten</h2>
+          <p class="section-sub">Een selectie van school- en hobbyprojecten die laten zien waar ik in uitblink.</p>
+        </div>
+
+        <div class="projects-grid stagger">
+          <div class="project-card">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background: linear-gradient(135deg,#2a221c,#3d2f23);"><i data-lucide="bot"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Vue.js</span>
+                <span class="project-tag">AI / LLM</span>
+                <span class="project-tag">API</span>
+              </div>
+              <h3>LLM Frontend</h3>
+              <p>Een moderne chat-interface voor het werken met grote taalmodellen. Gebouwd in Vue.js met focus op UX en real-time streaming responses.</p>
+              <div class="project-links">
+                <a href="https://github.com/ItsMySquid/LLM-Frontend" target="_blank" rel="noopener" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background: linear-gradient(135deg,#1c2216,#2a3220);"><i data-lucide="scan-eye"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Computer Vision</span>
+                <span class="project-tag">ML</span>
+              </div>
+              <h3>Posture Checker</h3>
+              <p>Een real-time houdingsdetectie tool met computer vision die via de webcam je zithouding analyseert en feedback geeft.</p>
+              <div class="project-links">
+                <a href="https://github.com/ItsMySquid/posture-checker" target="_blank" rel="noopener" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-thumb">
+              <div class="project-thumb-placeholder" style="background: linear-gradient(135deg,#2a1c16,#3d2a21);"><i data-lucide="gamepad-2"></i></div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="project-tag">TypeScript</span>
+                <span class="project-tag">OOP</span>
+                <span class="project-tag">Game</span>
+              </div>
+              <h3>PRG04 Eindopdracht</h3>
+              <p>Object-georiënteerd game project gebouwd met TypeScript. Strak klassemodel, clean architectuur en smooth gameplay.</p>
+              <div class="project-links">
+                <a href="https://github.com/ItsMySquid/PRG04-Eindopdracht" target="_blank" rel="noopener" class="project-link">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:3rem;" class="reveal">
+          <a href="projects.html" class="btn btn-ghost">Alle projecten bekijken →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SERVICES PREVIEW ── -->
+    <section class="services-section">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">Wat ik doe</p>
+          <h2 class="section-title">Diensten voor lokale bedrijven</h2>
+          <p class="section-sub">Of je nu een nieuwe website nodig hebt of een bestaande site wilt moderniseren — ik lever maatwerk dat werkt.</p>
+        </div>
+
+        <div class="services-grid stagger">
+          <div class="service-card">
+            <div class="service-icon"><i data-lucide="palette"></i></div>
+            <h3>Website Design & Development</h3>
+            <p>Van ontwerp tot live — moderne, mobielvriendelijke websites die jouw merk uitstralen en bezoekers omzetten in klanten.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i data-lucide="zap"></i></div>
+            <h3>Performance & Optimalisatie</h3>
+            <p>Snelle laadtijden, schone code en een hoge Google-score. Een trage website kost klanten — ik zorg dat dat niet gebeurt.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i data-lucide="handshake"></i></div>
+            <h3>Onderhoud & Samenwerking</h3>
+            <p>Langdurige samenwerking: updates, nieuwe features en technisch advies. Samen bouwen we aan jouw online aanwezigheid.</p>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:3rem;" class="reveal">
+          <a href="services.html" class="btn btn-primary">Meer over mijn diensten</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOSTING TEASER ── -->
+    <section class="hosting-teaser">
+      <div class="container">
+        <div class="hosting-inner">
+          <div class="reveal-left">
+            <div class="hosting-badge"><i data-lucide="rocket"></i> Binnenkort beschikbaar</div>
+            <h2 class="section-title">Website + Hosting.<br>Alles in één.</h2>
+            <p class="section-sub" style="margin-top:1rem;">
+              In samenwerking met een gespecialiseerd hostingbedrijf bied ik straks een compleet pakket: van design en development tot snelle, betrouwbare hosting. Alles onder één dak.
+            </p>
+            <a href="hosting.html" class="btn btn-ghost" style="margin-top:1.75rem;">Meer info →</a>
+          </div>
+
+          <div class="hosting-visual reveal-right">
+            <div><span class="hl">const</span> website = {</div>
+            <div>&nbsp;&nbsp;design: <span class="hl2">'op maat'</span>,</div>
+            <div>&nbsp;&nbsp;performance: <span class="hl3">'99/100'</span>,</div>
+            <div>&nbsp;&nbsp;hosting: <span class="hl2">'inbegrepen'</span>,</div>
+            <div>&nbsp;&nbsp;support: <span class="hl2">'persoonlijk'</span>,</div>
+            <div>&nbsp;&nbsp;uptime: <span class="hl3">'99.9%'</span></div>
+            <div>}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section class="cta-section" id="contact">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label" style="justify-content:center;">Contact</p>
+          <h2 class="section-title">Laten we iets bouwen samen</h2>
+          <p class="section-sub">
+            Ben je een lokaal bedrijf op zoek naar een frisse website? Of heb je een interessant project? Stuur me een bericht — ik reageer snel.
+          </p>
+          <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+            <a href="mailto:dirkvgelderen@gmail.com" class="btn btn-primary">
+              <i data-lucide="mail"></i> Stuur een mail
+            </a>
+            <a href="https://github.com/ItsMySquid" target="_blank" rel="noopener" class="btn btn-ghost">
+              GitHub profiel
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2025 Dirk van Gelderen — Creative Developer</p>
+        <div class="footer-links">
+          <a href="projects.html">Projecten</a>
+          <a href="services.html">Diensten</a>
+          <a href="hosting.html">Hosting</a>
+          <a href="https://github.com/ItsMySquid" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
